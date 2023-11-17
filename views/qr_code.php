@@ -33,16 +33,14 @@
                 QR_CODE
             </div>
             <p class="text-danger error_msg"><?php echo isset($_SESSION['error_msg']) ? $_SESSION['error_msg'] : ''?></p>
-            <form id='form_login' action="<?php echo $db_bk["base_url"]?>/authentic_two_fa" method="POST">
-                <div class="login_content">
-                    <div class="form-group  d-flex align-items-center justify-content-center">
-                        <img 
-                            src="<?php echo get_qr_code()?>" 
-                            alt="qr_code"
-                        >
-                    </div>
+            <div class="login_content">
+                <div class="form-group  d-flex align-items-center justify-content-center">
+                    <img 
+                        src="<?php echo get_qr_code()?>" 
+                        alt="qr_code"
+                    >
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -66,7 +64,9 @@
 <script>
     function qr_to_login() {
         <?php
-            unset($_SESSION["qr_code"])
+            if(isset($_SESSION["qr_code"])) {
+                unset($_SESSION["qr_code"]);
+            }
         ?>
     }
 </script>

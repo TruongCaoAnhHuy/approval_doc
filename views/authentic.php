@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-footer">
                     <button class="btn login-btn">Log On</button>
-                </div> 
+                </div>
             </form>
         </div>
     </div>
@@ -67,7 +67,7 @@
 <script text="javascript" src="./assets/js/login.js"></script>
 
 <script>
-    function logOn() {
+    function my_click() {
         <?php
         ?>
     }

@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result) {
             unset($_SESSION["error_msg"]);
             $_SESSION['username'] = $username;
+            $_SESSION['us_code'] = $username;
+
             header("Location: authentwofa");
         } else {
             header("Location: login");

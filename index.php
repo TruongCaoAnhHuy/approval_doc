@@ -7,6 +7,7 @@
     require 'app/configs/config.php';
     require 'app/configs/database.php';
     require 'app/configs/config_user.php';
+    require 'app/configs/authen_two_fa.php';
     
     require 'app/models/PanelModel.php';
     require 'app/models/DocModel.php';

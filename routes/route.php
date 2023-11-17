@@ -26,7 +26,11 @@
             }
             break;
         case 'authentwofa':
-            include 'views/authentic.php';
+            if(isset($_SESSION["username"])){
+                include 'views/authentic.php';
+            } else {
+                include 'views/login.php'; 
+            }
             break;
         case 'login':
             include 'views/login.php';

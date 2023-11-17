@@ -7,6 +7,6 @@
 
         $secretKey = secret_key();
 
-        $img = $g->getUrl("Approval", '_SPV', $secretKey);
+        $img = $g->getUrl($_SESSION["us_code"], '_SPV', $secretKey);
         return $img;
     }
