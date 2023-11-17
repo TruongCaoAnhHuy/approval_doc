@@ -1,0 +1,54 @@
+/* phone */
+@media only screen and (max-width: 46.1875em) {
+    /* header */
+    header {
+        height: 100px;
+    }
+
+    /* footer */
+    footer {
+        height: 100px;
+    }
+
+    #year, #server {
+        display: none;
+    }
+    .footer-menu_item {
+        padding: 5px 5px;
+    }
+
+    /* login */
+    .login-wrapper {
+        width: 380px;
+        top: 45%;
+    }
+
+    .icon-input-wrapper {
+        height: 46px;
+        padding-top: 15px;
+    }
+
+    .login-input {
+        height: 45px;
+        font-size: 1.6rem;
+    }
+
+    .login-btn {
+        padding: 10px 20px;
+        font-size: 1.6rem;
+    }
+
+    /* sidebar */
+    .sidebar {
+        display: none;
+    }
+
+    /* main */
+    .main {
+        margin-left: 0;
+    }
+
+    .content {
+        margin-bottom: 20px;
+    }
+}
