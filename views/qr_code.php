@@ -30,15 +30,21 @@
     <div class="wrapper wrapper-pd">
         <div class="login-wrapper">
             <div class="login_header">
-                QR_CODE
+                QR_CODE_<?php echo $_SESSION["us_code"]?>
             </div>
             <p class="text-danger error_msg"><?php echo isset($_SESSION['error_msg']) ? $_SESSION['error_msg'] : ''?></p>
             <div class="login_content">
-                <div class="form-group  d-flex align-items-center justify-content-center">
-                    <img 
-                        src="<?php echo get_qr_code()?>" 
-                        alt="qr_code"
-                    >
+                <div class="form-group d-flex align-items-center justify-content-center">
+                    <?php if(isset($us_bk[$_SESSION["us_code"]])) { ?>
+                            <img 
+                                src="<?php echo get_qr_code()?>" 
+                                alt="qr_code"
+                            >
+                    <?php } else {?>
+                        <h2>
+                            QR code not found
+                        </h2>
+                    <?php } ?>
                 </div>
             </div>
         </div>

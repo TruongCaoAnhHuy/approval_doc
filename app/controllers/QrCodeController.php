@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result && json_encode($password) === json_encode(md5(pass_qr())) ) {
+        if ($result && $password === md5(pass_qr()) ) {
             unset($_SESSION["error_msg"]);
             
             $_SESSION['qr_code'] = true;
