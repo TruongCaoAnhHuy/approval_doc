@@ -157,7 +157,8 @@
 
     function select_detail_item($type) {
         $sql = "";
-        $id_inbox_item = get_value_Inbox_item("ADInboxItemDocType");
+        $item = get_item();
+        $id_inbox_item = get_value_Inbox_item("AD{$item}ItemDocType");
 
         switch ($id_inbox_item) {
             case 'PR':

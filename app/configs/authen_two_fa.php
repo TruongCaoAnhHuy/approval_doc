@@ -1,11 +1,5 @@
-<?php
-    use Sonata\GoogleAuthenticator\GoogleAuthenticator;
-
-    global $us_bk;
-    $us_bk = $user_configs;
-    
+<?php    
     function secret_key() {
-        global $us_bk;
-        $secret = $us_bk[$_SESSION["us_code"]];
+        $secret = get_user_name_excel()[$_SESSION["us_code"]];
         return $secret;
     }

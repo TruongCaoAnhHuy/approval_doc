@@ -2,13 +2,14 @@
     if(isset($_POST["approval_btn"])) {
         try {
             $pdo = connect_db();
+            $item = get_item();
 
             // sql update
             $action_value = "Approved";
             $remark_value = $_POST["Remark"];
             $id_item = $_POST["inbox_id"];
 
-            $sql_update = "UPDATE ADInboxItems SET ADInboxItemAction = :new_value, ADInboxItemRemark = :new_remark WHERE ADInboxItemID = :id";
+            $sql_update = "UPDATE AD{$item}Items SET AD{$item}ItemAction = :new_value, AD{$item}ItemRemark = :new_remark WHERE AD{$item}ItemID = :id";
             $stmt_update = $pdo->prepare($sql_update);
             $stmt_update->bindParam(':new_value', $action_value, PDO::PARAM_STR);
             $stmt_update->bindParam(':new_remark', $remark_value, PDO::PARAM_STR);
@@ -17,16 +18,16 @@
 
             // sql insert
             $status = "Alive";
-            $doc_no = get_value_Inbox_item("ADInboxItemDocNo");
-            $doc_type = get_value_Inbox_item("ADInboxItemDocType");
-            $date = get_value_Inbox_item("ADInboxItemDate");
+            $doc_no = get_value_Inbox_item("AD{$item}ItemDocNo");
+            $doc_type = get_value_Inbox_item("AD{$item}ItemDocType");
+            $date = get_value_Inbox_item("AD{$item}ItemDate");
             $user_name = $_SESSION["username"];
             $action = $action_value;
             $proc_id = get_value_Inbox_item("FK_ADApprovalProcID");
             $proc_step = get_value_Inbox_item("FK_ADApprovalProcStepID");
             $remark = $_POST["Remark"];
-            $tbl_name = get_value_Inbox_item("ADInboxItemTableName");
-            $ojb_id = get_value_Inbox_item("ADInboxItemObjectID");
+            $tbl_name = get_value_Inbox_item("AD{$item}ItemTableName");
+            $ojb_id = get_value_Inbox_item("AD{$item}ItemObjectID");
 
             $sql_insert = "INSERT INTO ADDocHistorys VALUES (:status, :doc_no, :doc_type, :date, :user_name, :action, :proc_id, :proc_step, :remark, :tbl_name, :ojb_id, '', '')";       
             $stmt_insert = $pdo->prepare($sql_insert);
@@ -51,13 +52,14 @@
     if(isset($_POST["reject_btn"])) {
         try {            
             $pdo = connect_db();
+            $item = get_item();
 
             // sql update
             $action_value = "Rejected";
             $remark_value = $_POST["Remark"];
             $id_item = $_POST["inbox_id"];
 
-            $sql_update = "UPDATE ADInboxItems SET ADInboxItemAction = :new_value, ADInboxItemRemark = :new_remark WHERE ADInboxItemID = :id";
+            $sql_update = "UPDATE AD{$item}Items SET AD{$item}ItemAction = :new_value, AD{$item}ItemRemark = :new_remark WHERE AD{$item}ItemID = :id";
             $stmt = $pdo->prepare($sql_update);
             $stmt->bindParam(':new_value', $action_value, PDO::PARAM_STR);
             $stmt->bindParam(':new_remark', $remark_value, PDO::PARAM_STR);
@@ -66,16 +68,16 @@
 
             // sql insert
             $status = "Alive";
-            $doc_no = get_value_Inbox_item("ADInboxItemDocNo");
-            $doc_type = get_value_Inbox_item("ADInboxItemDocType");
-            $date = get_value_Inbox_item("ADInboxItemDate");
+            $doc_no = get_value_Inbox_item("AD{$item}ItemDocNo");
+            $doc_type = get_value_Inbox_item("AD{$item}ItemDocType");
+            $date = get_value_Inbox_item("AD{$item}ItemDate");
             $user_name = $_SESSION["username"];
             $action = $action_value;
             $proc_id = get_value_Inbox_item("FK_ADApprovalProcID");
             $proc_step = get_value_Inbox_item("FK_ADApprovalProcStepID");
             $remark = $_POST["Remark"];
-            $tbl_name = get_value_Inbox_item("ADInboxItemTableName");
-            $ojb_id = get_value_Inbox_item("ADInboxItemObjectID");
+            $tbl_name = get_value_Inbox_item("AD{$item}ItemTableName");
+            $ojb_id = get_value_Inbox_item("AD{$item}ItemObjectID");
 
             $sql_insert = "INSERT INTO ADDocHistorys VALUES (:status, :doc_no, :doc_type, :date, :user_name, :action, :proc_id, :proc_step, :remark, :tbl_name, :ojb_id, '', '')";
             $stmt = $pdo->prepare($sql_insert);

@@ -232,23 +232,6 @@ selectPage.onchange = (e) => {
     } 
 }
 
-// resize info modal
-const resizeBtn = $('.show-info-btn');
-const formModal = $('.modal-form');
-const showInfoBtn = $('.icon_show-info');
-showInfoBtn.classList.add('glyphicon-chevron-down')
-
-resizeBtn.onclick = () => {
-    formModal.classList.toggle('modal-form--show')
-    if(showInfoBtn.classList[2] === 'glyphicon-chevron-down') {
-        showInfoBtn.classList.remove('glyphicon-chevron-down');
-        showInfoBtn.classList.add('glyphicon-chevron-up');
-    } else {
-        showInfoBtn.classList.remove('glyphicon-chevron-up');
-        showInfoBtn.classList.add('glyphicon-chevron-down');
-    }
-}
-
 function showModal() {
     const modal = $('.modal');
     const closeModalBtn = $('.modal-close')
@@ -297,4 +280,21 @@ function formatDate(inputDate) {
     // Định dạng lại thành dd/mm/yyyy
     var formattedDate = (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
     return formattedDate;
+}
+
+// resize info modal
+const resizeBtn = $('.show-info-btn');
+const formModal = $('.modal-form');
+const showInfoBtn = $('.icon_show-info');
+showInfoBtn.classList.add('glyphicon-chevron-down')
+
+resizeBtn.onclick = () => {
+    formModal.classList.toggle('modal-form--show')
+    if(showInfoBtn.classList[2] === 'glyphicon-chevron-down') {
+        showInfoBtn.classList.remove('glyphicon-chevron-down');
+        showInfoBtn.classList.add('glyphicon-chevron-up');
+    } else {
+        showInfoBtn.classList.remove('glyphicon-chevron-up');
+        showInfoBtn.classList.add('glyphicon-chevron-down');
+    }
 }

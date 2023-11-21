@@ -35,7 +35,7 @@
             <p class="text-danger error_msg"><?php echo isset($_SESSION['error_msg']) ? $_SESSION['error_msg'] : ''?></p>
             <div class="login_content">
                 <div class="form-group d-flex align-items-center justify-content-center">
-                    <?php if(isset($us_bk[$_SESSION["us_code"]])) { ?>
+                    <?php if(isset(get_user_name_excel()[$_SESSION["us_code"]])) { ?>
                             <img 
                                 src="<?php echo get_qr_code()?>" 
                                 alt="qr_code"

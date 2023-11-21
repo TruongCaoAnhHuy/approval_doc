@@ -155,14 +155,14 @@
                 <div class="modal-header">
                     <p class="modal-title">
                         <span>
-                            <?php 
-                                echo get_value_Inbox_item('ADInboxItemAction') ? '' : 'Waiting for Approval: '
+                            <?php
+                                echo get_value_Inbox_item("AD{$item}ItemAction") ? '' : 'Waiting for Approval: '
                             ?>
                         </span>
-                        <span><?php echo get_value_Inbox_item('ADInboxItemDocNo')?></span>
+                        <span><?php echo get_value_Inbox_item("AD{$item}ItemDocNo")?></span>
                         <span>
                             <?php 
-                                echo get_value_Inbox_item('ADInboxItemAction') ? '('.get_value_Inbox_item('ADInboxItemAction').')' : ''
+                                echo get_value_Inbox_item("AD{$item}ItemAction") ? '('.get_value_Inbox_item("AD{$item}ItemAction").')' : ''
                             ?>
                         </span>
                         <input type="hidden" name="inbox_id" value="<?php echo get_id_Inbox_item()?>" />
@@ -195,7 +195,7 @@
                                     name="DocumentNo"
                                     class="input-value" 
                                     type="text" 
-                                    value="<?php echo get_value_Inbox_item('ADInboxItemDocNo')?>"  
+                                    value="<?php echo get_value_Inbox_item("AD{$item}ItemDocNo")?>"  
                                 />
                             </div>
                             <div class="modal-form-group hidden">
@@ -204,7 +204,7 @@
                                     name="DocumentType"
                                     class="input-value" 
                                     type="text" 
-                                    value="<?php echo get_value_Inbox_item('ADInboxItemDocType')?>" 
+                                    value="<?php echo get_value_Inbox_item("AD{$item}ItemDocType")?>" 
                                 />
                             </div>
                             <div class="modal-form-group">
@@ -213,7 +213,7 @@
                                     name="Priority"
                                     class="input-value"
                                     type="text" 
-                                    value="<?php echo get_value_Inbox_item('ADInboxItemPriorityCombo')?>" 
+                                    value="<?php echo get_value_Inbox_item("AD{$item}ItemPriorityCombo")?>" 
                                     disabled 
                                 />
                             </div>
@@ -245,16 +245,16 @@
                                 <input
                                     name="Date" 
                                     class="input-value input-value_date" 
-                                    ype="text" value="<?php echo get_value_Inbox_item('ADInboxItemDate')?>"   
+                                    ype="text" value="<?php echo get_value_Inbox_item("AD{$item}ItemDate")?>"   
                                 />
                             </div>
                             <div class="modal-form-group hidden">
                                 <label for="">Status</label>
-                                <input class="input-value" type="text" value="<?php echo get_value_Inbox_item('ADInboxItemTaskStatusCombo')?>" disabled />
+                                <input class="input-value" type="text" value="<?php echo get_value_Inbox_item("AD{$item}ItemTaskStatusCombo")?>" disabled />
                             </div>
                             <div class="modal-form-group">
                                 <label for="">Deadline</label>
-                                <input class="input-value input-value_date" type="text" value="<?php echo get_value_Inbox_item('ADInboxItemDeadline')?>" disabled />
+                                <input class="input-value input-value_date" type="text" value="<?php echo get_value_Inbox_item("AD{$item}ItemDeadline")?>" disabled />
                             </div>
                             <div class="modal-form-group hidden">
                                 <label for="">Approval step</label>
@@ -275,7 +275,7 @@
                                 <div class="form-group_header">Remark</div>
                                 <div class="text-area_wrapper">
                                     <textarea class="textarea-value" name="Remark" id="" cols="20" rows="6">
-                                        <?php echo get_value_Inbox_item('ADInboxItemRemark')?>
+                                        <?php echo get_value_Inbox_item("AD{$item}ItemRemark")?>
                                     </textarea>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                                 <div class="form-group_header">Message</div>
                                 <div class="text-area_wrapper">
                                     <textarea class="textarea-value" name="" id="" cols="20" rows="6">
-                                        <?php echo get_value_Inbox_item('ADInboxItemMessage')?>
+                                        <?php echo get_value_Inbox_item("AD{$item}ItemMessage")?>
                                     </textarea>
                                 </div>
                             </div>
@@ -293,7 +293,7 @@
                     </div>
                 </div>
                 <?php
-                    $row_detail = get_PR_row_value("Mã hàng", select_Inbox_sql(get_id_Inbox_item(), 'ADInboxItemDocNo', get_item()));
+                    $row_detail = get_PR_row_value("Mã hàng", select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()));
                     if($row_detail !== []) {
                 ?>
                     <div class="modal-info">
@@ -307,7 +307,7 @@
                                 <tbody>
                                     <tr>
                                         <?php 
-                                            $columns = get_column_PR_name(select_Inbox_sql(get_id_Inbox_item(), 'ADInboxItemDocNo', get_item()));
+                                            $columns = get_column_PR_name(select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()));
                                             foreach($columns as $key => $column) { ?>
                                                 <td class="table_column table_column--header table_column_detail--header<?php echo '_'.$key ?>">
                                                     <?php echo $column?>
@@ -317,15 +317,15 @@
                                         ?>
                                     </tr>
                                     <?php 
-                                        $rows = get_PR_row_value("Mã hàng", select_Inbox_sql(get_id_Inbox_item(), 'ADInboxItemDocNo', get_item()));
+                                        $rows = get_PR_row_value("Mã hàng", select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()));
                                         for($i = 0; $i < count($rows); $i++ ) { 
                                     ?>
                                             <tr class="detail-item" id="<?php echo $rows[$i]?>">
                                                 <?php 
-                                                $columns = get_column_PR_name(select_Inbox_sql(get_id_Inbox_item(), 'ADInboxItemDocNo', get_item()));
+                                                $columns = get_column_PR_name(select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()));
                                                 foreach($columns as $column) { ?>
                                                     <td class="table_column table_column--value">
-                                                        <?php echo get_PR_row_value($column, select_Inbox_sql(get_id_Inbox_item(), 'ADInboxItemDocNo', get_item()))[$i]?>  
+                                                        <?php echo get_PR_row_value($column, select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()))[$i]?>  
                                                     </td>
                                                 <?php    
                                                 }
@@ -341,7 +341,7 @@
                 <?php } ?>
                 
                     <div class="modal-btn">
-                        <?php if(get_value_Inbox_item("ADInboxItemAction") === "") {?>
+                        <?php if(get_value_Inbox_item("AD{$item}ItemAction") === "") {?>
                             <input type="submit" name="approval_btn" value="Approval" class="btn approval-btn bg-info" />
                             <input type="submit" name="reject_btn" value="Reject" class="btn reject-btn bg-danger" />
                         <?php } ?>
@@ -361,6 +361,10 @@
 <script>
     function my_click() {
         <?php 
+            $test = get_user_name_excel();
+            $test = json_encode($test);
+
+            echo "console.log({$test});";
         ?>
     }
 </script>
