@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo = connect_db();
 
         // Sử dụng prepared statement và bindParam
-        $sql = "SELECT * FROM ADUsers WHERE ADUserName = :username";
+        $sql = "SELECT * FROM ADUsers WHERE ADUserName = :username AND AAStatus = 'Alive'";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();

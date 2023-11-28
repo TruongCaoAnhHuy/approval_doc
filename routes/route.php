@@ -9,13 +9,6 @@
     // Xử lý $route để xác định tài nguyên hoặc hành động cần thực hiện.
     $route = basename($url_parts['path']);
 
-    // $allowed_paths = array(
-    //     "/allowed_path1",
-    //     "/allowed_path2",
-    //     "/allowed_path3",
-    //     // Thêm các đường dẫn khác cần phép ở đây
-    // );
-
     switch ($route) {
         // page
         case 'document':

@@ -5,7 +5,8 @@
             $stmt = connect_db()->query($sql);
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $page_num = ceil($row["total"] / 10);
+                echo "Loading";
+                $page_num = ceil($row["total"] / 15);
                 return $page_num;
             }
         } catch (PDOException $e) {

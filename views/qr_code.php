@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/grid.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/grid.min.css">
+    <link rel="stylesheet" href="./assets/css/style.min.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
 
     <title>SPV</title>
@@ -41,9 +41,9 @@
                                 alt="qr_code"
                             >
                     <?php } else {?>
-                        <h2>
+                        <h3>
                             QR code not found
-                        </h2>
+                        </h3>
                     <?php } ?>
                 </div>
             </div>

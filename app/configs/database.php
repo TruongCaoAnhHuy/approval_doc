@@ -60,7 +60,7 @@
                 {$sql_priority_finding}
             ORDER BY {$column_sort} {$action_sort}
             OFFSET {$page_num} ROWS
-            FETCH NEXT 10 ROWS ONLY
+            FETCH NEXT 15 ROWS ONLY
         ";
         return $sql;
     }
@@ -79,13 +79,10 @@
         $sql_action_finding = get_space_item('_7', "AD{$item}ItemAction");
         $sql_priority_finding = get_space_item('_8', "AD{$item}ItemPriorityCombo");
 
-        $column_sort = get_sort_column();
-        $action_sort = get_sort_action();
-
         $username = get_user_name();
 
         $sql = "
-            SELECT COUNT(*) AS total FROM ADInboxItems
+            SELECT COUNT(*) AS total FROM AD{$item}Items
             where ADMail{$read_to}Users = '{$username};' 
             and 
             AAStatus = 'Alive'

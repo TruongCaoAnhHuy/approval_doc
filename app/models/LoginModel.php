@@ -1,5 +1,5 @@
 <?php
-     function get_user_name_log_on($col_name) {
+    function get_user_name_log_on($col_name) {
         try {
             $sql = select_log_on_sql(get_id_Inbox_item(), $col_name);
             $stmt = connect_db()->query($sql);

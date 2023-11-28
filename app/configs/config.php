@@ -5,8 +5,11 @@
 
     if ($environment === 'dev') {
         require('app/configs/config_dev.php');
-    } else {
+    } else if($environment === 'prod') {
         require('app/configs/config_prod.php');
+    } else {
+        include('error_500.php');
+        die();
     }
 
     function get_item() {
@@ -118,28 +121,28 @@
         $item = get_item();
         switch ($sort_column) {
             case 'sort_1':
-                return 'ADInboxItemSubject';
+                return "AD{$item}ItemSubject";
                 break;
             case 'sort_2':
-                return 'ADInboxItemMessage';
+                return "AD{$item}ItemMessage";
                 break;
             case 'sort_3':
-                return 'ADInboxItemDocType';
+                return "AD{$item}ItemDocType";
                 break;
             case 'sort_4':
-                return 'ADInboxItemDocNo';
+                return "AD{$item}ItemDocNo";
                 break;
             case 'sort_5':
                 return 'FK_HRFromEmployeeID';
                 break;
             case 'sort_6':
-                return 'ADInboxItemDate';
+                return "AD{$item}ItemDate";
                 break;
             case 'sort_7':
-                return 'ADInboxItemAction';
+                return "AD{$item}ItemAction";
                 break;
             case 'sort_8':
-                return 'ADInboxItemPriorityCombo';
+                return "AD{$item}ItemPriorityCombo";
                 break;
             
             default:

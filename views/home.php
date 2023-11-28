@@ -15,7 +15,7 @@
     
     <link rel="stylesheet" type="text/css" href="assets/css/base.css">
     <link rel="stylesheet" type="text/css" href="assets/css/grid.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
     
     <title>CÔNG TY CỔ PHẦN STARTPRINT VIỆT NAM</title>
@@ -75,9 +75,11 @@
                                             <td class="table_column table_column--filter">
                                                 <form class="<?php echo '_'.$key?>" action="" method="GET">
                                                     <input name="<?php echo "_".$key ?>" class="finding-input" type="text" />
+                                                    <input name="item" class="finding-input item_query hidden" type="text" />
+
                                                     <button type="hidden" class="d-none">submit</button>
                                                 </form>
-                                                <span class="filter_btn"><img class="finding-img" src="./assets/img/finding.png" alt="finding"></span>
+                                                <!-- <span class="filter_btn"><img class="finding-img" src="./assets/img/finding.png" alt="finding"></span> -->
                                             </td>
                                         <?php    
                                         }
@@ -352,7 +354,7 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script text="javascript" src="assets/js/main.js"></script>
+<script text="javascript" src="assets/js/main.min.js"></script>
 <script text="javascript" src="assets/js/date_time.js"></script>
 <script text="javascript" src="assets/js/change_active.js"></script>
 
@@ -361,10 +363,6 @@
 <script>
     function my_click() {
         <?php 
-            $test = get_user_name_excel();
-            $test = json_encode($test);
-
-            echo "console.log({$test});";
         ?>
     }
 </script>

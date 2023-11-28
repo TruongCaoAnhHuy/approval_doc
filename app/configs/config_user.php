@@ -22,24 +22,19 @@
 
             // Lấy sheet hiện tại (có thể sửa đổi tên sheet nếu cần)
             $sheet = $spreadsheet->getActiveSheet();
-            
 
             // Lấy tất cả giá trị từ cột "Name" và "Key"
             $userKeys = [];
             $highestRow = $sheet->getHighestRow();
 
             for ($row = 2; $row <= $highestRow; $row++) {
-                $name = $sheet->getCell('A' . $row)->getValue(); // Giả sử cột "Name" ở cột A
-                $key = $sheet->getCell('B' . $row)->getCalculatedValue();  // Giả sử cột "Key" ở cột B
+                $name = $sheet->getCell('A' . $row)->getValue(); // Cột "Name" ở cột A
+                $key = $sheet->getCell('B' . $row)->getCalculatedValue(); // Cột "Key" ở cột B
 
                 // Thêm vào mảng tên người dùng và khóa
                 $userKeys[$name] = $key;
             }
 
-            // // Xử lý mảng tên người dùng và khóa theo nhu cầu của bạn
-            // foreach ($userKeys as $username => $userKey) {
-            //     return "$username: '$userKey', ";
-            // }
             return $userKeys;
 
         } catch (Exception $e) {

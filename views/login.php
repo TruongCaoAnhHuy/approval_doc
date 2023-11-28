@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" type="text/css" href="./assets/css/base.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/grid.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/grid.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 
     <title>SPV</title>
@@ -53,17 +53,15 @@
                         </span>
                         <input name="date" id="input-date" type="date" class="login-input date_input">
                     </div>
-                    <div class="form-group d-flex align-items-center">
+                    <!-- <div class="form-group d-flex align-items-center">
                         <span class="icon-input">
                             <span class="icon-input-wrapper"><i class="glyphicon glyphicon-list"></i></span>
                         </span>
                         <select type="text" class="login-input select_input" required>
                             <option value="">--Select Server--</option>
                             <option selected value="Expert_SPV_New">Local Server</option>
-                            <option value="Expert_SPV_New">Local Server</option>
-                            <option value="Expert_SPV_New">Local Server</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-footer">
                     <button class="btn login-btn">Log On</button>

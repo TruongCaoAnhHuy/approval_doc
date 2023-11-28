@@ -298,3 +298,9 @@ resizeBtn.onclick = () => {
         showInfoBtn.classList.add('glyphicon-chevron-down');
     }
 }
+
+// giữ lại query item
+const itemQueryInputs = $$('.item_query')
+itemQueryInputs.forEach(itemQueryInput => {
+    itemQueryInput.value = urlParams.get("item") || "Inbox";
+})
