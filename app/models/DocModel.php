@@ -1,12 +1,12 @@
 <?php
+
     function get_total_page() {
         try {
             $sql = select_total_row_sql();
             $stmt = connect_db()->query($sql);
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "Loading";
-                $page_num = ceil($row["total"] / 15);
+                $page_num = ceil($row["total"] / 16);
                 return $page_num;
             }
         } catch (PDOException $e) {
@@ -53,7 +53,6 @@
             $stmt = connect_db()->query($sql);
 
             $row_data = [];
-
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Process each row of data

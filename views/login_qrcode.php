@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 
+    <link rel="icon" href="assets/img/logo.ico">
+
     <title>SPV</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
@@ -21,7 +23,7 @@
 </head>
 <body>
     <header class="d-flex justify-content-between align-items-center">
-        <div class="title">SPV</div>
+        <div class="title title_page_login">SPV</div>
         <div class="control">
             | <a href="<?php echo $db_bk["base_url"]?>/login" class="logout_btn">Login</a>
         </div>
@@ -33,13 +35,13 @@
                 Log In
             </div>
             <p class="text-danger error_msg"><?php echo isset($_SESSION['error_msg']) ? $_SESSION['error_msg'] : ''?></p>
-            <form id='form_login' action="<?php echo $db_bk["base_url"]?>/authentic_qr" method="POST">
+            <form id='form_login_qr' action="<?php echo $db_bk["base_url"]?>/authentic_qr" method="POST">
                 <div class="login_content">
                     <div class="form-group d-flex align-items-center">
                         <span class="icon-input">
                             <span class="icon-input-wrapper"><i class="glyphicon glyphicon-user"></i></span>
                         </span>
-                        <input name="us" placeholder="USERNAME:" type="text" class="login-input" required />
+                        <input name="us" placeholder="USERNAME:" type="text" class="login-input" id="user_name_input"  required />
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <span class="icon-input">
@@ -73,16 +75,7 @@
     </div>
 
     <footer class="d-flex align-items-center justify-content-between position-fixed bottom-0">
-        <div class="copy-right">2023 © Copyright by [company name]</div>
-        <div class="footer-menu">
-            <ul class="footer-menu_list d-flex align-items-center">
-                <li class="footer-menu_item" id="date_value">27/10/2023</li>
-                <li class="footer-menu_item">Period: 10</li>
-                <li class="footer-menu_item" id="year">Year: 2023</li>
-                <li class="footer-menu_item"  id="server">Server: <?php echo $db_bk["hostname"] ? $db_bk["hostname"] : '' ?></li>
-                <li class="footer-menu_item">Database: <?php echo $db_bk["database"] ? $db_bk["database"] : '' ?></li>
-            </ul>
-        </div>
+        <div class="copy-right"><?php echo date("Y") ?> © Copyright by [STARPRINT VIỆT NAM]</div>
     </footer>
 </body>
 
@@ -91,6 +84,7 @@
 
 <script>
     function logOn() {
+        
     }
 </script>
 </html>

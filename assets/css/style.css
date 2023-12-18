@@ -9,15 +9,33 @@ header {
     z-index: 100;
 }
 
-.title {
+.logo {
+    width: 165px;
     padding: 12px 12px 18px;
-    font-size: 2.4rem;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.title {
+    flex: 1;
+    font-size: 3rem;
     font-weight: 600;
     line-height: normal;
     color: var(--white-color);
+    text-align: center;
 }
+
+.title_page_login {
+    text-align: left;
+    padding: 12px 12px 18px;
+}
+
 .control {
-    margin: 24px 25px 12px;
+    margin: 0 25px;
     font-size: 1.2rem;
 }
 
@@ -26,36 +44,8 @@ header {
     border-bottom: dashed 1px var(--white-color);
 }
 
-.sidebar {
-    position: fixed;
-    left: 0px;
-    top: 60px;
-    padding: 2px;
-    bottom: 57px;
-    height: 100%;
-    width: 200px;
-    
-}
-
-.sidebar_list {
-    border-width: 0px;
-    width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-.sidebar_item {
-    font-size: 1.2rem;
-    background: url(../img/BG_Sidebar.jpg) center top repeat-x rgb(226, 240, 255);;
-    border: 1px solid rgb(174, 202, 240);
-    padding: 4px 4px 4px 8px;
-    white-space: nowrap;
-}
-
 .main {
-    margin-left: 200px;
+    margin-left: 0;
     padding-top: var(--header-height);
 }
 
@@ -146,13 +136,35 @@ header {
     width: 100%;
 }
 
+#content_table {
+    display: none;
+}
+
 .table_column {
     border:  1px solid var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .table_column--id {
     width: 20px;
+}
+
+.hidden_0 {
+    position: relative;
+    width: 40px;
+}
+
+.hidden_0 i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+    padding: 5px;
+    cursor: pointer;
+}
+
+.hidden_0 i:hover {
+    color: var(--secondary-color);
 }
 
 .table_column--header {
@@ -296,13 +308,14 @@ header {
 
 footer {
     width: 100%;
+    height: var(--header-height);
     background-color: var(--primary-color);
 }
 
 .copy-right {
     font-size: 1.2rem;
     float: left;
-    margin: 30px 15px 11px;
+    margin: 11px 15px;
 }
 
 .footer-menu {
@@ -502,7 +515,7 @@ footer {
     font-size: 1.2rem;
 }
 
-.modal-form.modal-form--show {
+.modal-form--show {
     padding: 10px !important;
     height: 142px;
 }
@@ -619,8 +632,13 @@ footer {
     resize: vertical;
 }
 
-.table_column_detail--header._3 {
-    width: 200px;
+.table_column_detail--header_2 {
+    min-width: 220px;
+}
+
+.table_column_detail--header_3 {
+    display: block;
+    min-width: 200px;
 }
 
 .modal-btn {
@@ -631,7 +649,7 @@ footer {
 
 .modal-btn input{
     padding: 5px 10px;
-    font-size: 12px;
+    font-size: 1.2rem;
     line-height: 1.5;
     border-radius: 3px;
     color: var(--white-color);

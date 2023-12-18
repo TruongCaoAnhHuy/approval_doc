@@ -18,16 +18,6 @@ menuItems?.forEach(menuItem => {
     }
 })
 
-// const inboxBtn = $('#Inbox')
-// inboxBtn.onclick = (e) => {
-//     if(url.search) {
-        
-//         window.location.search = urlParams.toString() + `?item=${e.target.id}`;
-//     } else if(!url.search) {
-//         window.location.search = urlParams.toString() + `?item=${e.target.id}`;
-//     }
-// }
-
 const itemTag = $(`#${urlParams.get('item')}`)
 itemTag ? itemTag.classList.add('menu_item--active') : $(`#Inbox`).classList.add('menu_item--active');
 
@@ -106,7 +96,6 @@ const inputFinding4 = document.getElementsByName('_4')[0].value = urlParams.get(
 const inputFinding5 = document.getElementsByName('_5')[0].value = urlParams.get('_5');
 const inputFinding6 = document.getElementsByName('_6')[0].value = urlParams.get('_6');
 const inputFinding7 = document.getElementsByName('_7')[0].value = urlParams.get('_7');
-const inputFinding8 = document.getElementsByName('_8')[0].value = urlParams.get('_8');
 
 // change active link page
 const paramPage = urlParams.get('page') ? urlParams.get('page') : 1; // Kết quả: 'value1'
@@ -304,3 +293,33 @@ const itemQueryInputs = $$('.item_query')
 itemQueryInputs.forEach(itemQueryInput => {
     itemQueryInput.value = urlParams.get("item") || "Inbox";
 })
+
+// format Price
+function formatNumberWithComma(number) {
+    const formatter = new Intl.NumberFormat('en-US');
+    return formatter.format(number);
+}
+
+const priceDetailTables = $$('.table_price');
+const codeProducts = $$('.price_1');
+
+codeProducts.forEach(codeProduct => {
+    codeProduct.innerText = `A${codeProduct.innerText}`
+})
+
+priceDetailTables.forEach(priceDetailTable => {
+    if(!isNaN(Number(priceDetailTable.innerText))) {
+        priceDetailTable.innerText = formatNumberWithComma(priceDetailTable.innerText)
+    }
+})
+
+codeProducts.forEach(codeProduct => {
+    codeProduct.innerText = codeProduct.innerText.replace('A', '')
+})
+
+$('#loading').style.display = 'block';
+
+window.onload = function () {
+    $('#loading').style.display = 'none';
+    $('#content_table').style.display = 'block';
+};

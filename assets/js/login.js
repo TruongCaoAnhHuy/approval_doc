@@ -1,9 +1,9 @@
 const $ = document.querySelector.bind(document);
 
-const formLogin = $('#form_login') ? $('#form_login') : ''
+const formLoginQR = $('#form_login_qr') ? $('#form_login_qr') : ''
 const passwordInput = $('#password')
 
-formLogin.onsubmit = (e) => {
+formLoginQR.onsubmit = (e) => {
     var originalString = passwordInput.value;
     var encryptedString = encryptMD5(originalString);
 
@@ -13,4 +13,10 @@ formLogin.onsubmit = (e) => {
 function encryptMD5(input) {
     var encrypted = CryptoJS.MD5(input);
     return encrypted.toString();
+}
+
+// uppercase input
+const usernameInput = $('#user_name_input');
+usernameInput.oninput = () => {
+    usernameInput.value = usernameInput.value.toUpperCase();
 }

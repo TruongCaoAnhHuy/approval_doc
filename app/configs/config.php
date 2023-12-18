@@ -160,3 +160,11 @@
         }
     }
     
+    function get_action() {
+        $item = get_item();
+        if($item == 'Inbox') {
+            return " and ADInboxItemAction = ''";
+        } else {
+            return " and ADOutboxItemAction != ''";
+        }
+    }

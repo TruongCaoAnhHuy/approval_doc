@@ -19,6 +19,7 @@
     }
 
     function select_inbox_item_sql($page_num, $item, $read_to) {
+        $action = get_action();
 
         $sql_subject_finding = get_finding_item('_1', "AD{$item}ItemSubject");
         $sql_mess_finding = get_finding_item('_2', "AD{$item}ItemMessage");
@@ -40,16 +41,16 @@
                 AD{$item}ItemSubject as 'Subject', 
                 AD{$item}ItemMessage as 'Message', 
                 AD{$item}ItemDocType as 'Document Type', 
-                AD{$item}ItemDocNo as 'Document No', 
-                FK_HRFromEmployeeID as 'Sender', 
+                AD{$item}ItemDocNo as 'Document No',  
                 CONVERT(varchar, AD{$item}ItemDate, 103) AS 'Date', 
                 AD{$item}ItemAction as 'Action', 
                 AD{$item}ItemPriorityCombo as 'Priority'
             from AD{$item}Items
             where
-                ADMail{$read_to}Users = '{$username};' 
+                ADMailToUsers LIKE '%{$username}%' 
                 and 
                 AAStatus = 'Alive' 
+                {$action}				
                 {$sql_subject_finding} 
                 {$sql_mess_finding} 
                 {$sql_type_finding} 
@@ -60,12 +61,14 @@
                 {$sql_priority_finding}
             ORDER BY {$column_sort} {$action_sort}
             OFFSET {$page_num} ROWS
-            FETCH NEXT 15 ROWS ONLY
+            FETCH NEXT 16 ROWS ONLY
         ";
         return $sql;
     }
 
     function select_total_row_sql() {
+        $action = get_action();
+
         $username = get_user_name();
         $item = get_item();
         $read_to = read_or_to_mail();
@@ -83,10 +86,11 @@
 
         $sql = "
             SELECT COUNT(*) AS total FROM AD{$item}Items
-            where ADMail{$read_to}Users = '{$username};' 
+            where ADMailToUsers LIKE '%{$username}%' 
             and 
             AAStatus = 'Alive'
-            {$sql_subject_finding} 
+			{$action}
+            {$sql_subject_finding}
             {$sql_mess_finding} 
             {$sql_type_finding} 
             {$sql_no_finding} 
@@ -166,11 +170,9 @@
                     pd.ICProductName as 'Tên hàng',
                     ri.APPRItemDesc as 'Ghi chú',
                     dvt.ICUOMNo as 'Đơn vị tính',
-                    dvtk.ICUOMNo as 'ĐVT (kho)',
                     CAST(ri.APPRItemQty as decimal(18, 2)) as 'Số lượng',
                     CAST(ri.APPRItemFUnitPrice as decimal(18, 2)) as 'Đơn giá (NT)',
-                    CAST(ri.APPRItemUnitPrice as decimal(18, 2)) as 'Đơn giá (VNĐ)',
-                    CAST(APPRItemPrice as decimal(18, 2)) as 'Thành tiền (VNĐ)',
+                    ri.GLTOF04Combo as 'Cost Center',
                     APPRItemArrivalDate as 'Ngày yêu cầu giao'
 
                     from APPRItems RI
@@ -192,10 +194,10 @@
                     dvt.ICUOMNo as 'Đơn vị tính',
                     dvtk.ICUOMNo as 'ĐVT (kho)',
                     CAST(oi.APPOItemQty as decimal(18, 2)) as 'Số lượng',
-                    CAST(oi.APPOItemFUnitPrice as decimal(18, 3)) as 'Đơn giá (NT)',
-                    oi.APPOItemUnitPrice as 'Đơn giá (VNĐ)',
-                    oi.APPOItemFPrice as 'Thành tiền (VNĐ)',
-                    oi.APPOItemAmtTot as 'Tỏng cộng',
+                    CAST(oi.APPOItemFUnitPrice as decimal(18, 2)) as 'Đơn giá (NT)',
+                    CAST(oi.APPOItemUnitPrice as decimal(18, 2)) as 'Đơn giá (VNĐ)',
+                    CAST(oi.APPOItemFPrice as decimal(18, 2)) as 'Thành tiền (VNĐ)',
+                    CAST(oi.APPOItemAmtTot as decimal(18, 2)) as 'Tỏng cộng',
                     oi.GLTOF04Combo as 'Cost Center',
                     oi.GLTOF01Combo as 'Loại hình kinh doanh',
                     oi.GLTOF02Combo as 'Cost Line'

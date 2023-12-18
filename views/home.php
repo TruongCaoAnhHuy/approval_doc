@@ -17,24 +17,22 @@
     <link rel="stylesheet" type="text/css" href="assets/css/grid.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+
+    <link rel="icon" href="assets/img/logo.ico">
     
     <title>CÔNG TY CỔ PHẦN STARTPRINT VIỆT NAM</title>
 </head>
 <body>
     <header class="d-flex justify-content-between">
-        <div class="title">CÔNG TY CỔ PHẦN STARTPRINT VIỆT NAM</div>
-        <div class="control">
+        <div class="logo">
+            <img src="assets/img/logo-big.png" alt="logo">
+        </div>
+        <div class="title d-flex justify-content-center align-items-center">Phê duyệt chứng từ ERP</div>
+        <div class="control d-flex justify-content-center align-items-center">
             Welcome <b><?php echo  $_SESSION["username"] ?>!</b> | <a href="<?php echo $db_bk["base_url"]?>/logout" class="logout_btn">Logout</a>
         </div>
     </header>
     <div class="wrapper">
-            <div class="sidebar">
-                <ul class="sidebar_list">
-                    <li class="sidebar_item">
-                        Trung tâm thông báo
-                    </li>
-                </ul>
-            </div>
             <div class="main">
                 <div class="menu">
                     <ul class="menu_list d-flex">
@@ -53,14 +51,17 @@
                         <a href="<?php echo $db_bk["base_url"]?>/document" class="btn refresh_btn" onclick="get_total()">Refresh</a>
                     </div>
                     <div class="content_body">
-                        <table class="content_table">
+                        <table class="content_table" id="content_table">  
+                            <div class="modal_loading" id="loading">
+                                <div id="loader"></div>
+                            </div>
                             <tbody>
                                 <tr>
-                                    <td class="table_column table_column--header table_column--id">#</td>
+                                    <td class="table_column table_column--header table_column--id hidden_0">#</td>
                                     <?php 
                                         $columns = get_column_name();
                                         foreach($columns as $key => $column) { ?>
-                                            <td class="table_column table_column--header sort" id="<?php echo 'sort_'.$key ?>">
+                                            <td class="table_column table_column--header sort <?php echo 'hidden_'.$key?>" id="<?php echo 'sort_'.$key ?>">
                                                 <?php echo $column?>
                                             </td>
                                     <?php    
@@ -68,11 +69,11 @@
                                     ?>
                                 </tr>
                                 <tr>
-                                    <td class="table_column table_column--filter table_column--id"></td>
+                                    <td class="table_column table_column--filter table_column--id hidden_0"></td>
                                     <?php 
                                         $columns = get_column_name();
                                         foreach($columns as $key => $column) { ?>
-                                            <td class="table_column table_column--filter">
+                                            <td class="table_column table_column--filter <?php echo 'hidden_'.$key ?>">
                                                 <form class="<?php echo '_'.$key?>" action="" method="GET">
                                                     <input name="<?php echo "_".$key ?>" class="finding-input" type="text" />
                                                     <input name="item" class="finding-input item_query hidden" type="text" />
@@ -91,24 +92,26 @@
                                     for($i = 0; $i < count($rows); $i++ ) { 
                                 ?>
                                     <tr class="row-item" id="<?php echo $rows[$i]?>">
-                                        <td class="table_column table_column--id"></td>
+                                        <td class="table_column table_column--id hidden_0 ">
+                                            <i class="glyphicon glyphicon-eye-open icon_eye"></i>
+                                        </td>
                                         <?php 
                                         $columns = get_column_name();
-                                        foreach($columns as $column) { ?>
-                                            <td class="table_column table_column--value">
+                                        foreach($columns as $key => $column) { ?>
+                                            <td class="table_column table_column--value <?php echo 'hidden_'.$key?>">
                                                 <?php echo get_row_value($column)[$i]?>
                                             </td>
                                         <?php    
                                         }
                                         ?>
                                     </tr>
-                            <?php
+                                <?php
                                     }
                                 ?>
                             </tbody>
                         </table>
                         <div class="table_footer d-flex align-items-center">
-                            <p class="page_count">Page <?php echo get_page() === 0 ? 1 : $_GET["page"]?> of <?php echo get_total_page() - 1?> (<?php echo get_total_item()?> items)</p>
+                            <p class="page_count">Page <?php echo get_page() === 0 ? 1 : $_GET["page"]?> of <?php echo get_total_page()?> (<?php echo get_total_item()?> items)</p>
                             <div class="page_change d-flex align-items-center">
                                 <button class="btn btn-changepage" id="prev_page-btn">&lt;</button>
                                 <div class="num_page-list">
@@ -140,16 +143,7 @@
         </div>
     </div>
     <footer class="d-flex align-items-center justify-content-between position-fixed bottom-0">
-        <div class="copy-right">2023 © Copyright by [company name]</div>
-        <div class="footer-menu">
-            <ul class="footer-menu_list d-flex align-items-center">
-                <li class="footer-menu_item" id="date_value">27/10/2023</li>
-                <li class="footer-menu_item">Period: 10</li>
-                <li class="footer-menu_item" id="year"> Year: 2023</li>
-                <li class="footer-menu_item">Server: <?php echo $db_bk["hostname"] ? $db_bk["hostname"] : '' ?></li>
-                <li class="footer-menu_item">Database: <?php echo $db_bk["database"] ? $db_bk["database"] : '' ?></li>
-            </ul>
-        </div>
+        <div class="copy-right"><?php echo date("Y") ?> © Copyright by [STARPRINT VIỆT NAM]</div>
     </footer>
     <div class="modal">
         <div class="modal-wrapper">
@@ -325,8 +319,8 @@
                                             <tr class="detail-item" id="<?php echo $rows[$i]?>">
                                                 <?php 
                                                 $columns = get_column_PR_name(select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()));
-                                                foreach($columns as $column) { ?>
-                                                    <td class="table_column table_column--value">
+                                                foreach($columns as $key => $column) { ?>
+                                                    <td class="table_column table_column--value table_price <?php echo 'price_'.$key?>">
                                                         <?php echo get_PR_row_value($column, select_Inbox_sql(get_id_Inbox_item(), "AD{$item}ItemDocNo", get_item()))[$i]?>  
                                                     </td>
                                                 <?php    
@@ -352,7 +346,6 @@
         </div>
     </div>
 </body>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script text="javascript" src="assets/js/main.min.js"></script>
 <script text="javascript" src="assets/js/date_time.js"></script>
@@ -362,7 +355,5 @@
 
 <script>
     function my_click() {
-        <?php 
-        ?>
     }
 </script>

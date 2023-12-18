@@ -6,9 +6,6 @@ rows.forEach(row=> {
         if(e.target.localName === "td") {
             $('.row-item.row-active').classList.remove('row-active')
             e.target.parentElement.classList.add('row-active')
-        } else {
-            $('.row-item.row-active').classList.remove('row-active')
-            e.target.classList.add('row-active')
         }
     }
 
@@ -44,3 +41,19 @@ if(detailRows) {
         }
     });
 }
+
+const eyes = $$('.icon_eye')
+eyes.forEach(eye => {
+    eye.onclick = (e) => {
+        if(!url.search) {
+            window.location.href = location.href + `?inbox=${e.target.parentElement.parentElement.id}`;
+        } else if(url.search) {
+            if(urlParams.has('inbox')) {
+                urlParams.delete('inbox');
+                window.location.search = urlParams.toString() + `&inbox=${e.target.parentElement.parentElement.id}`;
+            } else {
+                window.location.search = urlParams.toString() + `&inbox=${e.target.parentElement.parentElement.id}`;
+            }
+        }
+    }
+})

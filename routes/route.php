@@ -18,6 +18,9 @@
                 include 'views/login.php'; 
             }
             break;
+        case 'document/outbox':
+            include 'views/outbox.php';
+            break;
         case 'authentwofa':
             if(isset($_SESSION["username"])){
                 include 'views/authentic.php';
